@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FinishLine : MonoBehaviour
-{
+public class FinishLine : MonoBehaviour {
     [SerializeField] float reloadTime = 2f;
     [SerializeField] ParticleSystem finishDetector;
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
             finishDetector.Play();
+            GetComponent<AudioSource>().Play();
             Invoke("reloadScene", reloadTime);
-            
         }
-        
+
     }
 
     void reloadScene() {
         SceneManager.LoadScene(0);
     }
-    
+
 }
